@@ -7,7 +7,7 @@ channels:
 dependencies:
   - pdbfixer
   - pip
-  - python=3.8
+  - python=3.11
   - openbabel
   - openmm
   - pip:
@@ -15,7 +15,7 @@ dependencies:
     - configargparse
     - h5py
     - numpy
-    - ray[default]>=2.0
+    - ray[default]
     - rdkit
     - pandas
     - scikit_learn
