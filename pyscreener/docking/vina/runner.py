@@ -107,6 +107,15 @@ class VinaRunner(DockingRunner):
         if mol is None:
             return False
 
+        # remove salt/counterions by keeping only the largest fragment
+        if mol.GetNumAtoms() > 1 and "." in sim.smi:
+            # print("Removing salt/counterions")
+            frags = Chem.GetMolFrags(mol, asMols=True, sanitizeFrags=True)
+            if len(frags) > 1:
+                frags = list(frags)
+                frags.sort(key=lambda x: x.GetNumAtoms(), reverse=True)
+                mol = frags[0]
+
         mol = Chem.AddHs(mol)
 
         try:
